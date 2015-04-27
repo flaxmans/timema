@@ -2,7 +2,7 @@
 Document written by Samuel Flaxman, samuel.flaxman@colorado.edu
 revised 27 April 2015
 
-README: A summary of the nLocusSim program, written for version 1.0.2 (C source code in file nLocusSim_v110.c)
+README: A summary of the nLocusSim program, written initially for version 1.0.2 (most current C source code now in file nLocusSim_v110.c)
 
 KEY UPDATES FROM PREVIOUS VERSIONS:
 + MULTIRUN mode (see V. below)
@@ -20,7 +20,13 @@ Numbered indexes (e.g., individuals, loci, deme #, etc) all start with 0 in C, n
 
 	C.  Loci and alleles:
 		1.  The "genome" setup is hard coded.  There are 6 loci:
-	LocusIDnumber	LocusTypeCode	LocusType	RecombProbabilityWithPrevLocus	0		0		NEUTRAL_LOCUS	NA	1		0		NEUTRAL_LOCUS	0.5	2		1		COLOR_LOCUS	0.001	3		2		PATTERN_LOCUS	COLOR_PATTERN_RECOMB_PROBABILITY	4		0		NEUTRAL_LOCUS	0.001	5		3		SEX_LOCUS	0.5
+	LocusIDnumber	LocusTypeCode	LocusType	RecombProbabilityWithPrevLocus
+	0		0		NEUTRAL_LOCUS	NA
+	1		0		NEUTRAL_LOCUS	0.5
+	2		1		COLOR_LOCUS	0.001
+	3		2		PATTERN_LOCUS	COLOR_PATTERN_RECOMB_PROBABILITY
+	4		0		NEUTRAL_LOCUS	0.001
+	5		3		SEX_LOCUS	0.5
 
 		2.  Note: "LocusTypeCode" is an integer coding used internally in the program and spit out some places.  The column "LocusType" in the above table is how these codes should be decoded.
 		3.  In this scheme, locus #0 is an unlinked neutral locus, locus #1 is a neutral locus tightly linked to the color locus (locus #2), locus #4 is a neutral locus tightly linked to the pattern locus (locus #3), and locus #5 is like a sex chromosome for an XX-XO system.  We assume here that none of the other loci are sex-linked.  COLOR_PATTERN_RECOMB_PROBABILITY is a parameter that can be altered on the command line with the option "-r" .
@@ -31,8 +37,8 @@ Pseudorandom numbers are generated using the Mersenne Twister; the source code f
 II. Compiling the program.
 	A. Requirements:  a UNIX-style terminal and gcc (the GNU C compiler) and standard C libraries
 	B. Instructions:  [ NOTE: instructions beginning with "$" denote UNIX commands to issue on the command line in your terminal ]
-		1.  unzip the compressed archive ("MelanisticModel.zip")
-		2.  Open a UNIX terminal and cd to the MelanisticModel directory
+		1.  download the source (.c), Makefile, and MT directory all to the same directory
+		2.  Open a UNIX terminal and cd to the directory
 		3.  $ cd Source/
 		4.  $ make
 		5.  That should make an executable.  If it doesn't, contact Sam.
@@ -43,13 +49,13 @@ III.  Running the program
 		1.  $ cd MelanisticModel/Source/ 
 		[ note this assumes you are in the parent directory that contains the MelanisticModel directory ]
 		2.  COMMAND LINE OPTIONS: to see a list of all available command line options for the program, at your command prompt, type:
-			$ ./nLocusSim_v102 -? 
+			$ ./nLocusSim_v110 -? 
 		3.  read the options, their usage, and the defaults.  For example, to run the simulation with a population size of 10000, which is NOT the default, you would do:  
-			$ ./nLocusSim_v102 -N 10000
+			$ ./nLocusSim_v110 -N 10000
 		4.  Run the program once with defaults by typing:
-			$ ./nLocusSim_v102
+			$ ./nLocusSim_v110
 		5.  With the defaults, it should take ~10 seconds to complete.
-		6.  Your Source/ directory should now be populated with 10 new data files (.csv) as well as a .R file with useful parameter values and codes.
+		6.  Your Source/ directory should now be populated with 10 new data files (.csv) as well as one .R file with useful parameter values and codes.
 
 IV.  Data outputs from the program in regular mode.
 	A.  File types:  
@@ -71,7 +77,7 @@ V.  Running program in MULTIRUN mode.
 	A.  Description: 
 		New to this version, the program is set up to be iterated multiple times (in sequence) directly from the command line or with a wrapper.  The basic idea is that final states from multiple independent simulations, along with parameter values of each, are stored in a single .csv file. This should facilitate analysis and parameter studies.  If the master data file gets too big, it should be easy to filter it with standard UNIX command line tools (awk, grep, etc.).
 	B.  Running in MULTIRUN mode:  run the program with the option "-w 1", e.g., 
-		$ ./nLocusSim_v102 -w 1 
+		$ ./nLocusSim_v110 -w 1 
 		(note that all other usual options work as well)
 	C.  Files produced from MULTIRUN mode.  Only 3 files are produced:
 		1.  "LastRunParameters.R" : a record of only the parameters from the last run that was completed. This is probably redundant and unnecessary
@@ -80,15 +86,7 @@ V.  Running program in MULTIRUN mode.
 		4.  RnumSeed.txt is automatically modified to ensure that independent runs have different random number seeds.
 	D.  Multirun mode never over-writes the data in "MultirunEndpointData.csv", but rather simply appends new data to it.
 	E.  Wrapping: 
-		An example wrapper script is provided in the Source/ directory ("exampleWrapper.sh").  This wrapper is a very simple BASH shell script.  After the code has been compiled (above), this script or anything similar should work.  To use this wrapper:
+		An example wrapper script is provided ("exampleWrapper.sh").  This wrapper is a very simple Bash shell script.  After the code has been compiled (above), this script or anything similar should work.  To use this wrapper:
 		$ sh exampleWrapper.sh
 	F.  Monitoring progress of a large number of runs: in MULTIRUN mode, the program prints messages about when it starts and finishes a run to stderr (i.e., prints messages to screen unless redirected).
-
-
-
-
-
-
-
-
 
