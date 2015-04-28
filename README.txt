@@ -39,15 +39,13 @@ II. Compiling the program.
 	B. Instructions:  [ NOTE: instructions beginning with "$" denote UNIX commands to issue on the command line in your terminal ]
 		1.  download the source (.c), Makefile, and MT directory all to the same directory
 		2.  Open a UNIX terminal and cd to the directory
-		3.  $ cd Source/
-		4.  $ make
-		5.  That should make an executable.  If it doesn't, contact Sam.
+		3.  $ make
+		4.  That should make an executable.  If it doesn't, contact Sam.
 
 III.  Running the program
 	A.  Requirements:  UNIX terminal, successfully compiled executable, RnumSeed.txt file present in same directory as executable
 	B.  Instructions:
-		1.  $ cd MelanisticModel/Source/ 
-		[ note this assumes you are in the parent directory that contains the MelanisticModel directory ]
+		1.  cd to the directory with the executable
 		2.  COMMAND LINE OPTIONS: to see a list of all available command line options for the program, at your command prompt, type:
 			$ ./nLocusSim_v110 -? 
 		3.  read the options, their usage, and the defaults.  For example, to run the simulation with a population size of 10000, which is NOT the default, you would do:  
@@ -55,7 +53,7 @@ III.  Running the program
 		4.  Run the program once with defaults by typing:
 			$ ./nLocusSim_v110
 		5.  With the defaults, it should take ~10 seconds to complete.
-		6.  Your Source/ directory should now be populated with 10 new data files (.csv) as well as one .R file with useful parameter values and codes.
+		6.  Your directory should now be populated with 10 new data files (.csv) as well as one .R file with useful parameter values and codes.
 
 IV.  Data outputs from the program in regular mode.
 	A.  File types:  
@@ -69,8 +67,8 @@ IV.  Data outputs from the program in regular mode.
 		6.  "LDtimeSeries.csv" : Like "AlleleFreqTimeSeries.csv", with LD values between the two loci.
 		7.  "MigrationRecord.csv" : Overall proportion of individuals changing patches (demes) each time step.
 		8.  "PatchAbundances.csv" : Numbers of individuals in each patch at each time
-		9.  NEW: "GenomeScheme.csv" : gives the table shown above in I.C.
-		10.  NEW:  "InterHostMatingTS.csv" :  gives a time series of the frequency of matings between males and females that originated on different host types
+		9.  "GenomeScheme.csv" : gives the table shown above in I.C.
+		10.  "InterHostMatingTS.csv" :  gives a time series of the frequency of matings between males and females that originated on different host types
 		11.  "parameters.R" : an R-readable script that contains information about states of all parameters that affected the run and the data recording.
 
 V.  Running program in MULTIRUN mode.
