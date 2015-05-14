@@ -1,8 +1,20 @@
 17 September 2014
 Document written by Samuel Flaxman, samuel.flaxman@colorado.edu
-revised 27 April 2015
+revised 14 May 2015
 
-README: A summary of the nLocusSim program, written initially for version 1.0.2 (most current C source code now in file nLocusSim_v110.c)
+README: A summary of the nLocusSim program, written initially for version 1.0.2 (most current C source code now in file nLocusSim_v110.c).  
+
+ATTRIBUTION:  
++ The source code (nLocusSim_vXXX.c) was written by Samuel Flaxman.  
++ The .R wrappers were written by Aaron Comeault.  
++ The random number generation code in the "MT" directory is from: Saito, M., and Matsumoto, M. (2006). SIMD-oriented Fast Mersenne Twister: a 128-bit pseudorandom number generator. In Monte Carlo and Quasi-Monte Carlo Methods, A. Keller, S. Heinrich, and H. Niederreiter, eds. (Heidelberg, Berlin: Springer-Berlin), pp. 607–622.  The version used here is dSMFT v2.1.  See: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/ for versions, downloads, and descriptions of the random number generator code.
+
+WHAT THE SOURCE CODE IS FOR:
+This github repo provides the source code that was used for simulations that appear as part of a scientific publication on the population genetics of adaptation walking stick insects.  The bibliographic citation is:
+A. A. Comeault et al.  2015.  Selection on a genetic polymorphism counteracts ecological speciation in a stick insect.  Current Biology [volume, pages, and DOI forthcoming]
+
+The full dataset used in that publication is archived at datadryad.org [DOI forthcoming].
+
 
 KEY UPDATES FROM PREVIOUS VERSIONS:
 + MULTIRUN mode (see V. below)
@@ -84,7 +96,8 @@ V.  Running program in MULTIRUN mode.
 		4.  RnumSeed.txt is automatically modified to ensure that independent runs have different random number seeds.
 	D.  Multirun mode never over-writes the data in "MultirunEndpointData.csv", but rather simply appends new data to it.
 	E.  Wrapping: 
-		An example wrapper script is provided ("exampleWrapper.sh").  This wrapper is a very simple Bash shell script.  After the code has been compiled (above), this script or anything similar should work.  To use this wrapper:
-		$ sh exampleWrapper.sh
+		1.  An very simple example wrapper script is provided ("exampleWrapper.sh").  This wrapper is a very simple Bash shell script.  After the code has been compiled (above), this script or anything similar should work.  To use this wrapper:
+			$ sh exampleWrapper.sh
+		2.  Wrappers we actually used to generate datasets are provided as two R scripts: "model_nLocusSim_v110_simulations.R" and "model_run_nLocusSim_v108_simulations.R".  These are the wrappers that generated the simulations for the Current Biology publication cited above.  The full data are archived at Dryad (also cited above).
 	F.  Monitoring progress of a large number of runs: in MULTIRUN mode, the program prints messages about when it starts and finishes a run to stderr (i.e., prints messages to screen unless redirected).
 
